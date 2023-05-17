@@ -1,29 +1,30 @@
-require("dotenv").config();
+require("dotenv").config(); /*Always top Bring MongoDB Url */
+require("./config/database").connect()
 const express = require("express");
 const app = express();
-const User = require("./model/user.js");
-
 app.use(express.json());
+
+const User = require("./model/user.js");
 
 app.get("/", (req, res) => {
   res.send("Hello,LCO from auth system");
 });
 
-app.post("/register", (req, res) => {
-  //get all info
+app.post("/register", async(req, res) => {
+  /*get all info */
   const { firstname, lastname, email, password } = req.body;
 
-  // check mandatory and validation field & need to check essitionally weather the all information is coming or not.
+  /*check mandatory and validation */
   if (!(firstname, lastname, email, password)) {
-    res.status(400).send("All fields are required")
+    res.status(400).send("All fields are required");
   }
-  // already registered 
-  const existingUser = User.findOne({email})
-  if(existingUser){
-    res.status(400).send("User Already exit")
+  /* already registered */
+  const existingUser = await User.findOne({ email });
+  if (existingUser) {
+    res.status(400).send("User Already exit");
   }
-  // Take care of password
-  
+  /* Take care of password*/
+
 
 });
 
