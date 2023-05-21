@@ -1,6 +1,6 @@
 /* 
 @@--P[1]--@@
-♦️🙄🙋✍️♦️ Heading :=>> register a user in auth system;
+♦️🙄🙋✍️♦️ ----Heading----- :=>> register a user in auth system;
 
 👩‍💻♦️🤔which one is job this routes "app.post("/register",(req,res)=>{})";
 
@@ -25,8 +25,9 @@
   - want to immediately executed just write ".exec()"
 
 
+------------------------)))------------------------------------))---
 
-♦️🙄🙋✍️♦️ Heading :=>> Database system in auth system;
+♦️🙄🙋✍️♦️ ----Heading----- :=>> Database system in auth system;
 
 @🧐Note: Database is always in another contenent as long as remember this everything seems like easy.
 @🧐Note: such kind of operation always takes too time so for that promises came into play we use "async" and "await"
@@ -40,10 +41,11 @@
  => which is coming in between it is know as middleware
 
 ♦️🙄🙋✍️♦️ Heading :=>> Handling password situation;
+
 🖇️ https://mongoosejs.com/docs/middleware.html
 @focus: majoraly focus on @pre & @post .......
 
-in this one we'r discussing about some middleware kind of stuff that we previously theory discussed now come to practicle one what the middleware do in the case of "Mongoose" it gives you mainly two two types of middleware some peple they called as lifecylcles "hooks" let's dig up dow of two methods pre and post
+in this one we'r discussing about some middleware kind of stuff that we previously theory discussed now come to practicle one what the middleware do in the case of "Mongoose" it gives you mainly two two types of middleware some people they called as lifecylcles "hooks" let's dig up down of two methods pre and post
 @pre => @#defination -> Pre middleware functions are executed one after another, when each middleware calls next.
 🖇️https://mongoosejs.com/docs/middleware.html#error-handling
 
@@ -66,7 +68,51 @@ Now,🤔How,we'r gonna encrypted that is question go and check
 @Identifire:[🤖(-)]
 Now,once you done let's go ahead & construct the user bcz this is object that will be monitaring/handling over to mongoose just go ahead & save it just process of saving this to DB it's entirely depends on model/user.js
 
+------------------------)))------------------------------------))---
 
+
+♦️🙄🙋✍️♦️ -----Heading----- :=>>  what is Jwt & creating token??
+ imp str =>
+
+ @🤔sideNote:JWT treat them as password,key 
+ @🤔sideNote: => -treat Token as your car key 
+ @🤔sideNote: => -Expire the token 
+   😈@BaseOn => Header | Payload | Signature
+
+@about: It Base on Generating Some kind of info that token is carrying arround so that information literally inside the token when you docode then you need extract also
+
+ @🤔sideNote: Don't pass password inside Payload only for (email,Id)
+ ref: 🖇️ https://jwt.io/introduction
+
+ 🤨 what is jwt credentials 👀?
+  JWTs are credentials, which can grant access to resources so treat them as password.
+
+ 😶‍🌫️@ref: 👋🖇️https://www.npmjs.com/package/jsonwebtoken
+
+ When should you use JSON Web Tokens?
+ -Authorization:
+ -Once the user is logged in, each subsequent request will include the JWT, allowing the user to access routes, services, and resources that are permitted with that token.
+ - Whenever the user wants to access a protected route or resource, the user agent should send the JWT, typically in the Authorization header using the Bearer schema. The content of the header should look like the following:
+ 
+ -Information Exchange:
+  we'r allowing user to create something into Database
+  @🤔sideNote: Algorithm: SHA256, HMAC
+  @🤔sideNote: jwt.sign(payload, secretOrPrivateKey, [options, callback])
+  @🤔sideNote: Always varify the stuff by the term it just decode the stuff what decode atucally gives us atucally you payload being extract when decode the information.
+  @🤔sideNote:
+  we don't pass Algorithm we would be rather passing something when it expires
+  @🤔sideNote:while passing something into payload mantra
+  - As soon as you save some value into DBs in mongoose atucally it gives a "unique ID" & that object id we access via user variable that we created line no. 34 arround.
+  we can also do with "User" model user but it's not good practice
+  --
+  @🤔sideNote: Need to pass privateId base on that we'r genating token inside payload.
+
+  @Identifire[🤡]
+    once the token is created since my model atually allows me to simply say user.token = token just assumes that it update the stuff 
+    🛕♦️am i going to update this into a DBs as well that is totally a strategies(update or not in DB) may be you want to stored again something into Dbs itself you can again go ahead & save this into DBs. 
+    🛕♦️ If anybudy try to access any resource you can check and take that token & befour even the varify the token whether there is already exists in that user property or not o.w it simply denied that's lot more strategies that can happend.
+    
+    @so this "user" that you'r having it gives a retun back lot more information like name,email,token, ....all so we need to take care as that so do res.status and pass it into json
 
 
 
