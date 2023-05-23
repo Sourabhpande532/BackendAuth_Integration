@@ -113,7 +113,24 @@ Now,once you done let's go ahead & construct the user bcz this is object that wi
     🛕♦️ If anybudy try to access any resource you can check and take that token & befour even the varify the token whether there is already exists in that user property or not o.w it simply denied that's lot more strategies that can happend.
     
     @so this "user" that you'r having it gives a retun back lot more information like name,email,token, ....all so we need to take care as that so do res.status and pass it into json
+   
+ ------------------------------)))---------------------------------------------
 
+ 
+♦️🙄🙋✍️♦️ -----Heading----- :=>>  login flow for auth??  Identifire:[🥲]
 
+if(!user){
+  res.status(400).send("Access denied, you'r not register user")
+}
+when we'r grabbing the "user"👆 we'r also have grabbing the field user.password
+@sideInformation:-> in advance section of mongoose make sure you add "+" sign in case instuctor mongoose not able to send the message while password is coming 
+....@above one for 🥰sideInfo
+
+title---=> compare and varify password..........
+in genaral ,it return a boolean value weather or not, this is atually one way & let me show you another way this can actually stop some of the spam stuff you'don't want to individually compare email & password you want to simply say may be i want to check one time check as a email & password both at the same time so what can you do instead above one belew one.
+
+  @😶‍🌫️strategies ->instead of storing it into variable we use -> if the user is there and password is match then generate a token & send it back.
+  how it is that-> generate token -> pass some info about in payload,optionally you can pass "email"(base on id we can easily grabbed it, not mandatory) but optionally may be some "x" region. 
+  Now,we have user & we've got token itself since this token is not save it into DBs itself so i'm go outside the if case👇
 
 */
