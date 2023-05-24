@@ -59,40 +59,46 @@ app.post("/register", async (req, res) => {
   }
 });
 
-app.post("/login", async(req,res)=>{
-try {
-/*get all info */
-const {email,password} = req.body;
+app.post("/login", async (req, res) => {
+  try {
+    /*get all info */
+    const { email, password } = req.body;
 
-/*check mandatory and validation */
-if(!(email && password)){
-  res.status(400).send("Field is missing,Invalide creditionals");
-}
-/* get user from db */
-const user = await User.findOne({email})
+    /*check mandatory and validation */
+    if (!(email && password)) {
+      res.status(400).send("Field is missing,Invalide creditionals");
+    }
+    /* get user from db */
+    const user = await User.findOne({ email });
 
-/*Identifire:[🥲] Location: 📂trackProject.js👇*/
+    /*Identifire:[🥲] Location: 📂trackProject.js👇*/
 
-/* Compare and varify password */
-if(user && (await bcrypt.compare(password, user.password))){
-const token = jwt.sign(
-  {user_id: user._id, email},
-  process.env.SECRET_KEY,
-  {
-    expiresIn: "99days"
-  }
-)
-/*process of saving the password */
-user.token = token;
-user.password = undefined;
-res.status(200).json(user);
-}
-/*If Invalide creditionals */
-res.send(400).send("invalid email or password")
-
-} catch (error) {
+    /* Compare and varify password */
+    if (user && (await bcrypt.compare(password, user.password))) {
+      const token = jwt.sign(
+        { user_id: user._id, email },
+        process.env.SECRET_KEY,
+        {
+          expiresIn: "99days",
+        }
+      );
+      /*process of saving the password */
+      user.token = token;
+      user.password = undefined;
+      res.status(200).json(user);
+    }
+    /*If Invalide creditionals */
+    res.send(400).send("invalid email or password");
+  } catch (error) {
     console.log(error);
   }
-})
+});
+
+app.get("/dashboard", (req, res) => {
+  res.send("Welcome to Secret information");
+});
+/*
+
+*/
 
 module.exports = app;
