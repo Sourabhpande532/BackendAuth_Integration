@@ -146,7 +146,7 @@ in genaral ,it return a boolean value weather or not, this is atually one way & 
    @ 🛋️Use middleware(Nothing more that than the fucntion)⤵️
    @ 🛋️Check for token presence(
      mobile Vs Web => @process of extract the token 
-     web --> on the web it's super easy so follow startegies
+     web --> on the web it's super easy so follow startegies⤵️
      🎗️Just send the token(frontend one)⤵️
      🎗️Send in cookie,httpOnly(fronted can not access this cookie only backend one)⤵️
      🎗️in headers⤵️
@@ -157,5 +157,44 @@ in genaral ,it return a boolean value weather or not, this is atually one way & 
    @ 🛋️NEXT()
 
 
+ ----------------)-NEW_HEADING)-----------------
+
+
+(-------@HEADING@--------)📂👋@Identifire[🤑(📂auth.js)]
+@Topic-> Writing custom middlewares;
+So, In this one we'r going to designed our we own custom middleware How we'r gonna use what's the fuctionality it is?
+
+@😏📖Theory-> Couple of thing that you should know how the data is in genral travels there are lot places that it is travel in the "@Headers@" but it can also be traveling by "@Cookies@","@Body@" A/c to applications require whereever form you can grabbed it.
+
+...continue now it's time to speck about 
+@🛋️Varify the token as per the 🀄📍Diagram says(Protectingroute.png) or theory says
+
+Varification of token can only be done via jsonwebtoken
+@ 🛋️ref -> 🖇️https://www.npmjs.com/package/jsonwebtoken(scrool down)
+@ 🛋️Hint->  Need to pass three things first is "◀️token","◀️key","◀️callback"(optional)
+
+
+@🫣📖FurtherMore-> call "auth" methods inside process one. 
+So, how we'r gonna grabbed the token just befoure let's talkabout first how the token is gonna travel that it can give a idea how gonna do that.
+🎗️first grabbed the 📦token via login
+🎗️how it's gonna travel "token" just via "@Headers@"(Go postman in headers section need to mention this one:->▶️ Authorization: Bearer <token>
+@ref 🛋️:-> 🖇️https://jwt.io/introduction 
+
+
+Now,we've basic idea/info where to looking for "token" how it do that the most common place that is "Headears" itself let's comes to code part and write some req.headers('Authorization',)<-- need to pass "Authorization"(you'll get Bearer_ <📦token>) here By the term it's mean what 
+you need to get over there is Bearer + space("") + token you don't need all of that Just need 📦"token" need to use little bit @JAVASCRIPT@ Over there just use replace.('Bearer ', "") <- 
+
+replace Bearer with "Nothing" by the term nothing means somebuddys fill this field via fronted/postman while testing.
+@🤫KeepNote:The replace() method does not change the original string
+
+use or condition it comes from cookies,body
+
+Go🏃‍♀️🏃‍♂️▶️ and check via fronted / postman through 
+if you closely take a look we get some info in console so this info is about payload that were we filled while login while creating "token".
+take a look on login route you'were passed user_id:"x" email that exactly we got here in terminal.
+
+@😍OVERALL_CONCLUSION
+Firstly,we'r hunting for token at a multiple places, + then we check the token weather token present or not we just ensure that if there is not token you'won't be able go further just simply return that value & end it.
+in case the token is there just varify and decode information via SECRET_KEY then pass next()
 
 */

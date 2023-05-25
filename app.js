@@ -8,6 +8,8 @@ const app = express();
 app.use(express.json());
 
 const User = require("./model/user.js");
+// middleware
+const auth = require( "./middleware/auth" );
 
 app.get("/", (req, res) => {
   res.send("Hello,LCO from auth system");
@@ -94,11 +96,8 @@ app.post("/login", async (req, res) => {
   }
 });
 
-app.get("/dashboard", (req, res) => {
+app.get("/dashboard",auth, (req, res) => {
   res.send("Welcome to Secret information");
 });
-/*
-
-*/
 
 module.exports = app;
