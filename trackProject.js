@@ -185,9 +185,9 @@ Now,we've basic idea/info where to looking for "token" how it do that the most c
 you need to get over there is Bearer + space("") + token you don't need all of that Just need 📦"token" need to use little bit @JAVASCRIPT@ Over there just use replace.('Bearer ', "") <- 
 
 replace Bearer with "Nothing" by the term nothing means somebuddys fill this field via fronted/postman while testing.
-@🤫KeepNote:The replace() method does not change the original string
+@🤫KeepNote:The replace() method does not change the original string it just replace it old to new one.
 
-use or condition it comes from cookies,body
+use or condition it comes from cookies,body...
 
 Go🏃‍♀️🏃‍♂️▶️ and check via fronted / postman through 
 if you closely take a look we get some info in console so this info is about payload that were we filled while login while creating "token".
@@ -196,5 +196,86 @@ take a look on login route you'were passed user_id:"x" email that exactly we got
 @😍OVERALL_CONCLUSION
 Firstly,we'r hunting for token at a multiple places, + then we check the token weather token present or not we just ensure that if there is not token you'won't be able go further just simply return that value & end it.
 in case the token is there just varify and decode information via SECRET_KEY then pass next()
+
+
+ ----------------)-NEW_HEADING)-----------------
+
+
+(-------@HEADING@--------)
+@IDENTIFIRE[😙(@ABOUT: "Setting Up Secure COOKIES",@HINT:"Send token into token")]
+---__---
+
+      @ABOUT🐧:--> Title:Setting Up Secure Cookies
+
+      So far, we'have discussed we can send the token by using "Bearer" auth and all of that But 
+
+      @Now, We onwards Introducing @How we can send token into cookie itself not yet discuss & it's important aspect but ensure that this cookie needs to be pass into browser itself or need to consume our web itself let's suppose you'r sending this cookie into reactNative,or flutter it will be cost/nightmares for you. in those applications it better send token itself and Whenever the request is being made its comes up as a Headears in Authorization.
+
+      Go and work login routes set cookie
+
+      @ABOUT(options)
+      Two major thing you'r gonna see into cookie 1st is when the "cookies" are expiring or 2nd one our the cookie can only be readable by the "backend" only
+      @🧐Why ? httpOnly:true ? --> it will only allow the cookie to read to those only by a backend server not anybudy script frontend itself.surly we see in postman.
+      -@GoThroughPostmant: Do practicle on it.↙️
+      -🎗️So,we were be able to send cookie from backend to frontend and if you notice.-
+      -🎗️this cookie stored in browser itself.
+
+      @ABOUT:res.status(200).cookie(Neet to pass any "x" name "token"()a/c to 📂middleware/auth.js, passValue(token), options).json()
+
+    🧐Why "token" Name?
+       🎗️in middleware I expect cookies is coming in the name of "token" itself if you go and see file that's why 🙆‍♂️calling "token" itself.
+    🧐Why ".json" Name at end?
+       🎗️ might be some any other applications not be able to handled this cookie so in top of that add "json" response.
+       🎗️ might anybudy not be able to send token properly from cookie that's why?
+
+---==---
+
+    @Errorr@ problem actually 
+       
+      @Now,it's time to 😍access "📍/dashboard" itself this is where that is where the problem kick in(Go Postman)
+      Now, we have the cookies consider in "browser itself" hey, we've auth return the auth & look forward the token in cookie itself amd Now 
+      😗Given the Fact we'r sending token in "header" and "Authorization" itself 
+      @AimAT-> Moto is that just collect the information from cookie itself because we've set it over there.
+
+      Although token is there if you do Now,onwards you'll get error because we'r not pass the info in header & Authorization itself so in order to grabbed that info we'need to take help from 🧐"cookie-parser"
+      @AIM: without sending token in header & Authorization we need to do this process via "cookie" itself. 
+
+      @Ref -> 📍🔗https://www.npmjs.com/package/cookie-parser
+      @Review🔝↗️ ->  Parse Cookie header and populate req.cookies with an object keyed by the cookie names
+
+      Go,instantly↙️
+      @Ref -> 📍📂 middleware/auth/(@entry:console.log(req.cookie);)↙️
+
+
+      @Continue>>>>......
+
+
+      why'a'm getting "undefined" Why from here the MAIN source is coming form here that's why & one more A'm trying to extract token form here But why not able to see that
+      @sideInformation: So in such case go 📂app.js look for the middleware this again just like we've app.use(express.json()) for one we'r able to read all json data without one you'wont be do that So similary for "cookies" you can't do that read the cookies directly
+
+      so for that we need to install "cookie-parser"
+
+      @Ref -> 📍🔗https://www.npmjs.com/package/cookie-parser
+
+     📂app.js: -->  -🎗️const cookieParser = require("cookie-parser")
+                    -🎗️app.use(cookieParser())
+
+    @PerformOpViaPostman:-> still get error But got token in console.log if you check.
+    @🚩FoundError:-> on the go -> 🔺TypeError: Cannot read properties of undefined (reading 'replace')
+
+    @🧐WhyIsThat?? => since you'r getting token then why (reading 'replace')"undefined" this where 🙆‍♂️"classic Js "kicks in.
+   -🎗️in the auth section you'r notice we mention just go ahead & try grabbed the token from the "Headears" whatever you grabbed just go and run & "replace" on that so we'r instucting whatever you grabbed i didn't say if you grabbed something or if you grabbed "undefined" all of the it's trying to run just this method which is replace the "Bearer" that's why it mess all arround. that't how the error came.
+
+   -🎗️in case chaining up this in sequentional manner surly it'll resolve.
+   - As per the requirement we need to grabbed first just here we need token form cookie it should be at top. 
+   -🎗️so it not error,it not fucntion,it just classic Js structure first set cookie at top.
+   -🎗️& it's convection req.header always at bottom and you can also grabbed it form params.
+   -🎗️you can also grabbed token form "params"
+
+   😍😪Now,finaly get the access of dashboard👍✔️.
+
+   😪🫣H.W : How you can expire Cookie Just go and explore & add fuctionality of expire token @hind:->Method:=>AKA aspirations of token and all stuff.
+   ------------------------------)))-------------------------------------
+
 
 */

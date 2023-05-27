@@ -3,13 +3,17 @@ require("./config/database").connect();
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
 
 const app = express();
+
+// middleware
 app.use(express.json());
+app.use(cookieParser());
 
 const User = require("./model/user.js");
 // middleware
-const auth = require( "./middleware/auth" );
+const auth = require("./middleware/auth");
 
 app.get("/", (req, res) => {
   res.send("Hello,LCO from auth system");
@@ -87,16 +91,33 @@ app.post("/login", async (req, res) => {
       /*process of saving the password */
       user.token = token;
       user.password = undefined;
-      res.status(200).json(user);
+
+      /*res.status(200).json(user);↙️ //instead "json" pass into "cookie" */
+
+      /*Send Token Via cookie */
+      const options = {
+        expires: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000),
+        httpOnly: true,
+      };
+      res.status(200).cookie("token", token, options).json({
+        success: true,
+        token,
+        user,
+        message: "Successfully login",
+      });
+
+      /*🔝@IDENTIFIRE[😙(@ABOUT: "Setting Up Secure Cookies"
+          -@HINT:"Send token into token") to="📂tp.js"]*/
+
     }
     /*If Invalide creditionals */
-    res.send(400).send("invalid email or password");
+    res.sendStatus(400).send("invalid email or password");
   } catch (error) {
     console.log(error);
   }
 });
 
-app.get("/dashboard",auth, (req, res) => {
+app.get("/dashboard", auth, (req, res) => {
   res.send("Welcome to Secret information");
 });
 
