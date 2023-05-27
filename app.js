@@ -108,7 +108,6 @@ app.post("/login", async (req, res) => {
 
       /*🔝@IDENTIFIRE[😙(@ABOUT: "Setting Up Secure Cookies"
           -@HINT:"Send token into token") to="📂tp.js"]*/
-
     }
     /*If Invalide creditionals */
     res.sendStatus(400).send("invalid email or password");

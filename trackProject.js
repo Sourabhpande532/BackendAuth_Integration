@@ -136,25 +136,38 @@ in genaral ,it return a boolean value weather or not, this is atually one way & 
 
 
  ----------------)-NEW_HEADING)-----------------
-@HEADING:---)----> PROTECTING THE ROUTE  web vs mobile(How we can PROTECT the routes give a access of dashboard).
+
+@HEADING:---)----> PROTECTING THE ROUTE  📳mobile Vs 🕸️💻Web(How we can PROTECT the routes give a access of dashboard).
 @briefoverview->"What is the use of register & login routes of course protect some of the valuable information so far as we concern that only login user can asses the information"
 🎗️design dashboard routes app.get("/dashboard")...
 
 -PROTECTING THE ROUTE 
  👋🎈How we'r gonna do that remember so far we discussed about middleware that's play's huge role in this one.So follow belew @startegies. once after logon token comes into picture
 
-   @ 🛋️Use middleware(Nothing more that than the fucntion)⤵️
-   @ 🛋️Check for token presence(
-     mobile Vs Web => @process of extract the token 
+   @🔺🛋️Use middleware(Nothing more that than the fucntion)⤵️
+
+   @🔺🛋️Check for token presence(
+     @theory:->complex-picture #Base on what framwork that you'r building/using is base on you'r gonna see the token goes on weather it goes web or mobile. in web it become so easy but in mobile it become little bit tricky now we'r gonna more focus on "web"
+
+     📳mobile Vs 🕸️💻Web => @process of extract the token 
      web --> on the web it's super easy so follow startegies⤵️
-     🎗️Just send the token(frontend one)⤵️
-     🎗️Send in cookie,httpOnly(fronted can not access this cookie only backend one)⤵️
-     🎗️in headers⤵️
-     🎗️body⤵️
+     🎗️Just send the token (frontend one)⤵️@How-> how you'r gonna send to fronted we need to concern the information is suppose to be send to fronted that i expect whatever you route trying to access you give me the token where ↙️↙️⬇️ this is where "cookie" comes in ⬇️
+
+     🎗️Send in cookie,httpOnly(fronted can not access this cookie only backend one)⤵️@fix:-> majorily try to fix token into cookie itself that we'saw in express how we can access backend itself res.cookie. 
+     ↗️why?httpOnly-> this one only i prefer in the production only backend can access this programmiticaly not frontend if you just set "cookie" only it can be access to anyone.⤵️
+
+     🎗️in headers(another futher down to road you can expect "token" here which is so common information:Go->Postman you'll get to know about headers & Authorization) ⤵️
+
+     🎗️body("token" you can also expect body itself)⤵️
+       @sideInfoRegardingFrontedPerspective: while sending request you don't need send "token" but there is usually place or important file in which kind of request take in between where axious is completely able to intercept request & via sending this info just befour that you add a "token" in "header" itself(go postman and pass token via Authorization). give name anyone
+
    )⤵️
-   @ 🛋️Varify the token (JWT allows us to varify that token weather token expire or it still Authenticated or is it only genrating using your SECRET_KEY only since you only know the Secret & you've only genrating that token only you'r able to decrypt that token & get that information from it -@MAIN-> apart from this once you extract that token & varify it then go to ⤵️)
-   @ 🛋️Extract info from payload(once you extract that information may be at the time + you' just grabbed the "ID" Then again you make a request to DBs itself(grabbing more information & putting that information somewhere it can be into "request" or however you'would like to))⤵️
-   @ 🛋️NEXT()
+
+   @🔺🛋️Varify the token (JWT allows us to varify that token weather token expire or it still Authenticated or is it only genrating using your SECRET_KEY only since you only know the Secret & you've only genrating that token only you'r able to decrypt that token & get that information from it -@MAIN-> apart from this once you extract that token & varify it then go to ⤵️)
+
+   @🔺🛋️Extract info from payload(once you extract that information may be at the time + you' just grabbed the "ID" Then again you make a request to DBs itself(grabbing more information & putting that information somewhere it can be into "request" or however you'would like to))⤵️
+   @🔺 🛋️NEXT()
+
 
 
  ----------------)-NEW_HEADING)-----------------
