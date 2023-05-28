@@ -138,6 +138,9 @@ in genaral ,it return a boolean value weather or not, this is atually one way & 
  ----------------)-NEW_HEADING)-----------------
 
 @HEADING:---)----> PROTECTING THE ROUTE  📳mobile Vs 🕸️💻Web(How we can PROTECT the routes give a access of dashboard).
+
+@HINT:Start from login routes to dashboard...
+
 @briefoverview->"What is the use of register & login routes of course protect some of the valuable information so far as we concern that only login user can asses the information"
 🎗️design dashboard routes app.get("/dashboard")...
 
@@ -174,13 +177,17 @@ in genaral ,it return a boolean value weather or not, this is atually one way & 
 
 
 (-------@HEADING@--------)📂👋@Identifire[🤑(📂auth.js)]
+
 @Topic-> Writing custom middlewares;
-So, In this one we'r going to designed our we own custom middleware How we'r gonna use what's the fuctionality it is?
+So, In this one we'r going to designed our we own custom middleware How we'r gonna use what's the fuctionality it is? 
+@💹🙆‍♂️HINT: PROCESS_of Writing custom middleware Start form here .. Writing code As per the 🀄📍Diagram(Protecting.png) 3rd which is varify the token.
 
 @😏📖Theory-> Couple of thing that you should know how the data is in genral travels there are lot places that it is travel in the "@Headers@" but it can also be traveling by "@Cookies@","@Body@" A/c to applications require whereever form you can grabbed it.
 
 ...continue now it's time to speck about 
+
 @🛋️Varify the token as per the 🀄📍Diagram says(Protectingroute.png) or theory says
+GO_INSTANTLY_For_Following_Process --> 📂middleware/auth/(From there we need to varify token)
 
 Varification of token can only be done via jsonwebtoken
 @ 🛋️ref -> 🖇️https://www.npmjs.com/package/jsonwebtoken(scrool down)
@@ -188,13 +195,19 @@ Varification of token can only be done via jsonwebtoken
 
 
 @🫣📖FurtherMore-> call "auth" methods inside process one. 
-So, how we'r gonna grabbed the token just befoure let's talkabout first how the token is gonna travel that it can give a idea how gonna do that.
+@IMP:---> So, how we'r gonna 💹grabbed the "token" it's very important let me tell how the "token" is gonna ✈️🚢travel that give you brief idea :-> just befoure let's talkabout first how the token is gonna travel that it can give a idea how gonna do that.
+
 🎗️first grabbed the 📦token via login
 🎗️how it's gonna travel "token" just via "@Headers@"(Go postman in headers section need to mention this one:->▶️ Authorization: Bearer <token>
 @ref 🛋️:-> 🖇️https://jwt.io/introduction 
 
+@PracticeOn:-> Postman itself then look for ↙️
 
-Now,we've basic idea/info where to looking for "token" how it do that the most common place that is "Headears" itself let's comes to code part and write some req.headers('Authorization',)<-- need to pass "Authorization"(you'll get Bearer_ <📦token>) here By the term it's mean what 
+Now,we've basic idea/info where to looking for "token" how it do that the most common place that is "Headears" itself let's comes to code part and write it down ↙️
+
+@🙀PROCESS_OF_GRABBING_TOKEN->(@Headears,@Cookie,@body that's why write code)
+
+req.headers('Authorization',) <-- need to pass "Authorization"(you'll get Bearer_ <📦token>) here By the term it's mean what 
 you need to get over there is Bearer + space("") + token you don't need all of that Just need 📦"token" need to use little bit @JAVASCRIPT@ Over there just use replace.('Bearer ', "") <- 
 
 replace Bearer with "Nothing" by the term nothing means somebuddys fill this field via fronted/postman while testing.
