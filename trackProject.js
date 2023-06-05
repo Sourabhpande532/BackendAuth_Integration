@@ -180,7 +180,8 @@ in genaral ,it return a boolean value weather or not, this is atually one way & 
 
 @Topic-> Writing custom middlewares;
 So, In this one we'r going to designed our we own custom middleware How we'r gonna use what's the fuctionality it is? 
-@💹🙆‍♂️HINT: PROCESS_of Writing custom middleware Start form here .. Writing code As per the 🀄📍Diagram(Protecting.png) 3rd which is varify the token.
+@💹🙆‍♂️HINT: PROCESS_of Writing custom middleware Start form here .. Writing code As per the 🀄📍Diagram(Protecting.png) -> 
+3rd ""which is varify the token"".
 
 @😏📖Theory-> Couple of thing that you should know how the data is in genral travels there are lot places that it is travel in the "@Headers@" but it can also be traveling by "@Cookies@","@Body@" A/c to applications require whereever form you can grabbed it.
 
@@ -232,6 +233,8 @@ in case the token is there just varify and decode information via SECRET_KEY the
 ---__---
 
       @ABOUT🐧:--> Title:Setting Up Secure Cookies
+      @📍PROCESS_of_Writing_Code: form ""login route"" just after this comment -> ""Compare and varify password"" 
+
 
       So far, we'have discussed we can send the token by using "Bearer" auth and all of that But 
 
@@ -272,9 +275,7 @@ in case the token is there just varify and decode information via SECRET_KEY the
       Go,instantly↙️
       @Ref -> 📍📂 middleware/auth/(@entry:console.log(req.cookie);)↙️
 
-
       @Continue>>>>......
-
 
       why'a'm getting "undefined" Why from here the MAIN source is coming form here that's why & one more A'm trying to extract token form here But why not able to see that
       @sideInformation: So in such case go 📂app.js look for the middleware this again just like we've app.use(express.json()) for one we'r able to read all json data without one you'wont be do that So similary for "cookies" you can't do that read the cookies directly
@@ -301,7 +302,46 @@ in case the token is there just varify and decode information via SECRET_KEY the
    😍😪Now,finaly get the access of dashboard👍✔️.
 
    😪🫣H.W : How you can expire Cookie Just go and explore & add fuctionality of expire token @hind:->Method:=>AKA aspirations of token and all stuff.
+
+
    ------------------------------)))-------------------------------------
+   H.W : ADD 💝💝validation to user signup form
+
+  '------------------NEW--------------------'
+   @KEEPNOTE:-> Almost Same validation of version 6.3.0/ of @latest:7.0.0
+
+   @TALKABOUT:__> 💹SETTING UP VALIDATION IN ROUTES:
+
+   Ref:✈️🔗https://express-validator.github.io/docs/guides/customizing/
+
+   @🖲️😗Gonna_Focus_ON: ""Custom Error Message""(https://express-validator.github.io/docs/6.3.0/custom-error-messages)
+
+   @🖲️😗LOCATION: 📂👉routes/auth.js
+
+
+  .........KEEP_ON
+   
+  @TALKABOUT:__> 💹VALIDATION RESULT 
+
+  @🖲️😗LOCATION: 📂👉controllers/auth.js
+  https://express-validator.github.io/docs/6.3.0/
+  @NEED_TO_WORK_below like that in 📂👉controllers/auth.js(signup)
+
+  {"errors": [{"location": "body","msg": "Invalid value","param": "username"
+  }]
+}
+
+
+
+ ------------------------------)))-------------------------------------
+
+   -----PROCESS_OF_UPLOADING_IMAGES_ON_CLOUNDARY-----
+
+   NOW, we'r gonna focus on 💹💹image upload section for take refference need to go on swaggerfile that you'designed.
+
+   ref: -> 🔗"D:\ProBackendHiteshSirCourse\swaggerdocsapp"
+
+
 
 
 */
